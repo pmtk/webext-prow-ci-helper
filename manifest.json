@@ -7,8 +7,6 @@
     "48": "icons/prow-48.png"
   },
   "permissions": [
-    "activeTab",
-    "tabs",
     "*://prow.ci.openshift.org/*",
     "*://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/*"
   ],
