@@ -1,0 +1,24 @@
+html,
+body {
+  background-color: #424242;
+  width: 350px;
+}
+
+.hidden {
+  display: none;
+}
+
+li {
+  padding-bottom: 7px;
+}
+
+a:link,
+a:visited {
+  color: #e8e8e8;
+  text-decoration: none;
+}
+
+div {
+  color: #e8e8e8;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
