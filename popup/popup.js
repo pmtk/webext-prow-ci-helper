@@ -1,3 +1,4 @@
+'use strict';
 
 const prow_baseurl = "https://prow.ci.openshift.org/view/gs/test-platform-results/logs/";
 
@@ -9,16 +10,17 @@ const prow_baseurl = "https://prow.ci.openshift.org/view/gs/test-platform-result
     return;
   }
 
-  browser.tabs.executeScript({ file: "/prow.js" })
-    .then(res => {
-      links = res[0];
-      console.log("Links from content script:", links);
+  browser.tabs.sendMessage(tab.id, { req: "get" })
+    .then((resp) => {
+      console.log("Response from content script:", resp)
+
+      const links = resp.links;
       if (links.length == 0) {
         document.querySelector("#content").innerHTML = `<h3>No steps found in artifacts</h3>`;
         return;
       }
 
-      html = links.map((link) => (
+      const html = links.map((link) => (
         `<li>
         <a target="_blank" rel="noopener noreferrer" href='${link.url}'>${link.name}</a>
         (<a target="_blank" rel="noopener noreferrer" href='${link.dir}'>dir</a>)

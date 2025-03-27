@@ -12,15 +12,16 @@
     "*://prow.ci.openshift.org/*",
     "*://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com/*"
   ],
-  // "content_scripts": [{
-  //   "matches": ["*://prow.ci.openshift.org/*"],
-  //   "js": ["prow.js"]
-  // }],
-  // "browser_action": {
-  //   "default_icon": "icons/prow-48.png",
-  //   "default_title": "Prow",
-  //   "default_popup": "popup/popup.html"
-  // },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://prow.ci.openshift.org/view/gs/test-platform-results/*"
+      ],
+      "js": [
+        "prow.js"
+      ]
+    }
+  ],
   "page_action": {
     "default_icon": {
       "19": "icons/prow-19.png",
@@ -29,7 +30,7 @@
     "default_title": "Prow",
     "default_popup": "popup/popup.html",
     "show_matches": [
-      "*://prow.ci.openshift.org/*"
+      "*://prow.ci.openshift.org/view/gs/test-platform-results/*"
     ]
   }
 }
