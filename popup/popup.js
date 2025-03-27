@@ -37,7 +37,12 @@ const prow_baseurl = "https://prow.ci.openshift.org/view/gs/test-platform-result
       </ul>`);
     })
     .catch(e => {
-      update_popup_contents(`<h3>Error</h3>
-      <p>${e.message}</p>`);
+      console.log("err", e.message)
+      if (e.message.includes("Could not establish connection")) {
+        console.log("Page script didn't finish yet. Retry.")
+        update_popup_contents(`<h3>Error</h3><p>Page script didn't finish yet. Retry by clicking the icon again.</p>`);
+      } else {
+        update_popup_contents(`<h3>Error</h3><p>${e.message}</p>`);
+      }
     });
 })();
