@@ -15,12 +15,6 @@ const prow_baseurl = "https://prow.ci.openshift.org/view/gs/test-platform-result
   }
 
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-
-  if (!tab.url.includes(prow_baseurl)) {
-    update_popup_contents(`<h3>Extension is only usable on Prow CI jobs</h3>`);
-    return;
-  }
-
   browser.tabs.sendMessage(tab.id, { req: "get" })
     .then((resp) => {
       console.log("Response from content script:", resp)
