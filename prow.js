@@ -29,12 +29,11 @@
         .then(response => response.text())
         .then(t => {
             // Turn fetched artifacts/workflowName/ contents into HTML object.
-            var el = document.createElement('html');
-            el.innerHTML = t;
-            el.getElementsByTagName('a');
+            const parser = new DOMParser();
+            const workflowArtifactsPage = parser.parseFromString(t, `text/html`);
 
             // Get links to steps' results.
-            const allLinks = Array.from(el.getElementsByTagName('a'));
+            const allLinks = Array.from(workflowArtifactsPage.getElementsByTagName('a'));
             // Filter out those not starting with '/gcs' and the '..' (go dir up)
             const filtered = allLinks.filter((n) => n.pathname.startsWith('/gcs') && !n.innerText.includes(".."));
             // Create an array of objects {name, url}
