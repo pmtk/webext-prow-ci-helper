@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Build logs links for prow job",
-  "version": "0.1",
-  "description": "TODO",
+  "name": "Prow CI Helper",
+  "version": "0.2",
+  "description": "Provides a list of links to particular build step's log.",
   "icons": {
     "48": "icons/prow-48.png"
   },
@@ -39,7 +39,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "addon@example.com",
+      "id": "prow-ci-helper@pmtk",
       "strict_min_version": "120.0"
     }
   }
