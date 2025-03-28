@@ -1,6 +1,10 @@
 'use strict';
 
 (async () => {
+    if (typeof browser === "undefined") {
+        var browser = chrome;
+    }
+
     const gcsRootDomain = "https://gcsweb-ci.apps.ci.l2s4.p1.openshiftapps.com";
 
     const artifactsRootDir = Array.from(document.getElementsByTagName('a')).filter((n) => n.innerText.includes("Artifacts"))[0].href;
@@ -39,9 +43,8 @@
     console.log("Parsed links to workflow's steps' build-log.txt:", parsed);
 
     // Setup listener that will respond to messages sent from the page action's popup.
-    browser.runtime.onMessage.addListener((msg, sender, sr) => {
-        console.log("Received message from popup", msg);
-        console.log("Sender", sender);
-        return Promise.resolve({ links: parsed });
+    browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+        sendResponse({ links: parsed });
+        return true;
     });
 })();

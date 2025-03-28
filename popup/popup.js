@@ -14,6 +14,10 @@ const prow_baseurl = "https://prow.ci.openshift.org/view/gs/test-platform-result
     }
   }
 
+  if (typeof browser === "undefined") {
+    var browser = chrome;
+  }
+
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   browser.tabs.sendMessage(tab.id, {})
     .then((resp) => {

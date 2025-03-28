@@ -1,7 +1,12 @@
 'use strict';
 
+if (typeof browser === "undefined") {
+    var browser = chrome;
+}
+
 function handleMessage(message, sender, sendResponse) {
-    return fetch(message.url).then(response => response.text())
+    fetch(message.url).then(response => response.text()).then(sendResponse);
+    return true;
 }
 
 browser.runtime.onMessage.addListener(handleMessage);
