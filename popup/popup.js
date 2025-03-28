@@ -15,7 +15,7 @@ const prow_baseurl = "https://prow.ci.openshift.org/view/gs/test-platform-result
   }
 
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-  browser.tabs.sendMessage(tab.id, { req: "get" })
+  browser.tabs.sendMessage(tab.id, {})
     .then((resp) => {
       console.log("Response from content script:", resp)
 
