@@ -1,0 +1,17 @@
+name: Build the extension for Firefox
+on: pull_request
+jobs:
+  build-web-ext:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy manifest-firefox.json into place
+        run: cp manifest-firefox.json manifest.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --global web-ext
+      - run: web-ext --version
+      - run: web-ext lint
+      - run: web-ext build
+      # TODO: Sign
